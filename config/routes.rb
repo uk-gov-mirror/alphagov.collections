@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 
   get "/learn-to-drive-a-car", to: 'step_nav#show'
+  get "/dummy-slug", to: 'step_nav#show'
 
   get "/browse.json" => redirect("/api/content/browse")
 
