@@ -21,7 +21,7 @@
     <% if content_for?(:breadcrumbs) %>
       <%= yield :breadcrumbs %>
     <% else %>
-      <%= render 'breadcrumbs', navigation_helpers: @navigation_helpers %>
+      <%= render 'breadcrumbs', content_item: @content_item %>
     <% end %>
 
     <main id="content" role="main" class="content <%= yield :page_class %>">
