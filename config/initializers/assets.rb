@@ -3,6 +3,7 @@ Rails.application.config.assets.precompile += %w(
   application-ie7.css
   application-ie8.css
   print.css
+  views/travel-advice.js
 )
 
 Rails.application.config.assets.prefix = "/collections"

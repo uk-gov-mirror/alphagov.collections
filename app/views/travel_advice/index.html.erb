@@ -1,0 +1,64 @@
+<% content_for :extra_headers do %>
+  <%= javascript_include_tag "views/travel-advice.js", integrity: true, crossorigin: 'anonymous' %>
+  <%= auto_discovery_link_tag :atom, travel_advice_path(:format => :atom), :title => "Recent updates" %>
+<% end %>
+
+<main id="content" role='main' class="group full-width">
+  <header class="page-header group">
+    <%= render "govuk_component/title", title: @presenter.title %>
+  </header>
+
+  <div class="travel-container">
+    <div class='inner group'>
+      <div class='section-wrap group'>
+        <section id="country-filter" class="group">
+          <form>
+            <fieldset>
+              <h1>Search for a country or territory</h1>
+              <label class='visuallyhidden' for="country">Country or territory</label>
+              <input id="country" name="country" type="text" />
+            </fieldset>
+          </form>
+        </section>
+        <section class="subscriptions">
+          <h1 class="visuallyhidden">Subscriptions</h1>
+          <p>Get updates</p>
+          <ul>
+            <li><%= link_to "email", @presenter.subscription_url, class: "email-alerts", title: "Subscribe to email alerts" %></li>
+            <li><%= link_to "feed", travel_advice_path(@presenter.slug, format: "atom"), :class => "feed", :title => "Subscribe via RSS" %></li>
+          </ul>
+        </section>
+      </div>
+      <section class="countries-wrapper">
+        <div class="countries">
+          <h1>Countries or territories</h1>
+          <p class="country-count">
+            <span class="js-filter-count"><%= @presenter.countries.length %></span>
+            <span class="visuallyhidden">Countries or territories</span>
+          </p>
+        </div>
+
+        <div class="countries-list">
+          <% group_by_initial_letter(@presenter.countries).each do |initial,countries| %>
+            <div id="<%= initial %>" class="list">
+              <h2><span class="visuallyhidden">Countries starting with </span><%= initial %></h2>
+              <ul class="countries">
+                <% countries.each do |country| %>
+                  <li data-synonyms='<%= country.synonyms ? country.synonyms.join("|") : "" %>'><%= link_to country.name, "/foreign-travel-advice/#{country.identifier}" %></li>
+                  <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<% content_for :title, page_title(@presenter) %>
+
+<% content_for :extra_headers do %>
+  <% if @presenter.description %>
+    <meta name="description" content="<%= @presenter.description %>">
+  <% end %>
+<% end %>

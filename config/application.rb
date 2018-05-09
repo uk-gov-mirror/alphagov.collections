@@ -33,5 +33,7 @@ module Collections
       #{config.root}/lib
       #{config.root}/app/presenters/supergroups
     )
+
+    config.time_zone = 'London'
   end
 end
