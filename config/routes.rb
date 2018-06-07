@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 
+  namespace :api do
+    resources :organisations, only: %i[index], defaults: { format: :json }
+  end
+
   get "/browse.json" => redirect("/api/content/browse")
 
   resources :browse, only: %i(index show), param: :top_level_slug do
