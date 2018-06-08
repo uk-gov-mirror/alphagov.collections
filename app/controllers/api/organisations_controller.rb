@@ -1,18 +1,17 @@
 module Api
   class OrganisationsController < ApplicationController
-    def index
-      js = [
-        {
-          content_id: SecureRandom.uuid
-          title: 'Organisations'
-        },
-        {
-          content_id: SecureRandom.uuid
-          title: 'E Organisations'
-        }
-      ]
+    ORGANISATIONS_BASE_PATH = "/government/organisations".freeze
+    ORGANISATIONS_CONTENT_ID = "fde62e52-dfb6-42ae-b336-2c4faf068101".freeze
 
-      respond_with js
+    def index
+      # TODO:
+      # - pagination
+      # - content_item details hash
+
+      @content_item = ContentItem.find!(ORGANISATIONS_BASE_PATH)
+
+
+      render json: @content_item
     end
   end
 end
