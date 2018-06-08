@@ -1,3 +1,4 @@
+# TODO: erase or adapt
 module Api
   class OrganisationPresenter
     def self.paginate(collection, view_context)

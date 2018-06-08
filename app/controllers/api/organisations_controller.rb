@@ -7,6 +7,7 @@ module Api
       # TODO:
       # - pagination
       # - content_item details hash
+      # - presentation 
 
       @content_item = ContentItem.find!(ORGANISATIONS_BASE_PATH)
 
