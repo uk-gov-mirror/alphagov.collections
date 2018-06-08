@@ -10,7 +10,6 @@ module Api
 
       @content_item = ContentItem.find!(ORGANISATIONS_BASE_PATH)
 
-
       render json: @content_item
     end
   end

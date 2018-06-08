@@ -3,12 +3,19 @@ require "test_helper"
 module Api
   describe BrowseController do
 
+    def organisations
+      JSON.parse(
+        File.read(
+          File.expand_path( "./test/fixtures/content_store/api/organisations.json")
+        )
+      )
+    end
+
+
     describe "GET index" do
       before do
-        content_store_has_item("/browse",
-          links: {
-            top_level_browse_pages: top_level_browse_pages
-          }
+        content_store_has_item("/government/organisations",
+          organisations
         )
       end
 
