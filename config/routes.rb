@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   mount GovukPublishingComponents::Engine, at: "/component-guide"
 
   namespace :api do
-    resources :organisations, only: %i[index], defaults: { format: :json }
+    # TODO: uncomment default format
+    resources :organisations, only: %i[index] #, defaults: { format: :json }
   end
 
   get "/browse.json" => redirect("/api/content/browse")
