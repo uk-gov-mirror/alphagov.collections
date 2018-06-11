@@ -79,7 +79,6 @@ module Api
       it "set correct expiry headers" do
         get :index
 
-        binding.pry
         r = JSON.parse(response.body)
 
         assert_equal r, whitehall_api_organisations
