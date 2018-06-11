@@ -3,7 +3,7 @@ require "test_helper"
 module Api
   describe OrganisationsController do
 
-    def organisations
+    def content_store_organisations
       JSON.parse(
         File.read(
           File.expand_path( "./test/fixtures/content_store/api/organisations.json")
@@ -73,12 +73,13 @@ module Api
 
     describe "GET index" do
       before do
-        content_store_has_item("/government/organisations", organisations)
+        content_store_has_item("/government/organisations", content_store_organisations)
       end
 
       it "set correct expiry headers" do
         get :index
 
+        binding.pry
         r = JSON.parse(response.body)
 
         assert_equal r, whitehall_api_organisations

@@ -1,30 +1,18 @@
-# TODO: erase or adapt
 module Api
   class OrganisationPresenter
-    def self.paginate(collection, view_context)
-      page = Api::Paginator.paginate(collection, view_context.params)
-      collection =
+    def initialize(organisation)
+      @content_item = ContentItem.find!(organisation[:href])
     end
 
-    def as_json(_options = {})
+    def present
       {
-        id: context.api_organisation_url(model),
-        title: model.name,
-        format: model.organisation_type.name,
-        updated_at: model.updated_at,
-        web_url: Whitehall.url_maker.organisation_url(model),
-        details: {
-          slug: model.slug,
-          abbreviation: model.acronym,
-          logo_formatted_name: model.logo_formatted_name,
-          organisation_brand_colour_class_name: model.organisation_brand_colour.try(:class_name),
-          organisation_logo_type_class_name: model.organisation_logo_type.try(:class_name),
-          closed_at: model.closed_at,
-          govuk_status: model.govuk_status,
-          govuk_closed_status: model.govuk_closed_status,
-          content_id: model.content_id,
-        },
-        analytics_identifier: model.analytics_identifier,
+        id: id,
+        title: title,
+        format: org_format,
+        updated_at: updated_at,
+        web_url: web_url,
+        details: details,
+        analytics_identifier: analytics_identifier,
         parent_organisations: parent_organisations,
         child_organisations: child_organisations,
         superseded_organisations: superseded_organisations,
@@ -32,37 +20,108 @@ module Api
       }
     end
 
-    def links
-      [
-        [context.api_organisation_url(model), { 'rel' => 'self' }]
-      ]
-    end
-
   private
+    attr_reader :content_item
 
-    def superseded_organisations
-      present_organisations(model.superseded_organisations)
+    def id
+      "https://www.gov.uk/api/content#{content_item[:href]}"
     end
 
-    def superseding_organisations
-      present_organisations(model.superseding_organisations)
+    def title
+      content_item[:title]
+    end
+
+    def org_format
+      # TODO
+      # "Ministerial department"
+      content_item[:format]
+    end
+
+    def updated_at
+      # TODO
+      content_item[:updated_at]
+    end
+
+    def web_url
+      content_item[:web_url]
+    end
+
+    def details
+      {
+        "slug": slug,
+        "abbreviation": abbreviation,
+        "logo_formatted_name": logo_formatted_name,
+        "organisation_brand_colour_class_name": organisation_brand_colour_class_name,
+        "organisation_logo_type_class_name": organisation_logo_type_class_name,
+        "closed_at": closed_at,
+        "govuk_status": govuk_status,
+        "govuk_closed_status": govuk_closed_status,
+        "content_id": content_id
+      }
+    end
+
+    def content_id
+      content_item[:details][:content_id]
+    end
+
+    def slug
+      content_item[:details][:slug]
+
+      # /government/organisations/attorney-generals-office
+    end
+
+    def abbreviation
+      content_item[:details][:abbreviation]
+    end
+
+    def logo_formatted_name
+      content_item[:details][:logo_formatted_name]
+    end
+
+    def organisation_brand_colour_class_name
+      content_item[:details][:organisation_brand_colour_class_name]
+    end
+
+    def organisation_logo_type_class_name
+      content_item[:details][:organisation_logo_type_class_name]
+    end
+
+    def closed_at
+      content_item[:details][:closed_at]
+    end
+
+    def govuk_status
+      content_item[:details][:govuk_status]
+    end
+
+    def govuk_closed_status
+      content_item[:details][:govuk_closed_status]
+    end
+
+    def analytics_identifier
+      content_item[:analytics_identifier]
     end
 
     def parent_organisations
-      present_organisations(model.parent_organisations)
+      content_item[:parent_organisations]
     end
 
     def child_organisations
-      present_organisations(model.child_organisations)
+      content_item[:child_organisations]
+      [
+        {
+          "id": "https://www.gov.uk/api/organisations/treasury-solicitor-s-department",
+          "web_url": "https://www.gov.uk/government/organisations/treasury-solicitor-s-department"
+        },
+      ]
     end
 
-    def present_organisations(organisations)
-      organisations.map do |organisation|
-        {
-          id: context.api_organisation_url(organisation),
-          web_url: Whitehall.url_maker.organisation_url(organisation)
-        }
-      end
+    def superseded_organisations
+      content_item[:superseded_organisations]
+    end
+
+    def superseding_organisations
+      data[:superseding_organisations]
     end
   end
 end

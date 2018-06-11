@@ -1,4 +1,59 @@
 module OrganisationsHelpers
+  # TODO: maybe remove this given the bottom methods
+  def content_store_organisations_fixture
+    JSON.parse(
+      File.read(
+        File.expand_path( "./test/fixtures/content_store/api/organisations.json")
+      )
+    ).with_indifferent_access
+  end
+
+  def content_store_ministerial_department_fixture
+    content_store_organisations_fixture[:details][:ordered_ministerial_departments].second
+  end
+
+  def expected_whitehall_organisation
+    {
+      "id": "https://www.gov.uk/api/organisations/cabinet-office",
+      "title": "Cabinet Office",
+      "format": "Ministerial department",
+      "updated_at": "2018-01-09T10:07:57.000+00:00",
+      "web_url": "https://www.gov.uk/government/organisations/cabinet-office",
+      "details": {
+        "slug": "cabinet-office",
+        "abbreviation": "",
+        "logo_formatted_name": "Cabinet Office",
+        "organisation_brand_colour_class_name": "cabinet-office",
+        "organisation_logo_type_class_name": "single-identity",
+        "closed_at": nil,
+        "govuk_status": "live",
+        "govuk_closed_status": nil,
+        "content_id": "96ae61d6-c2a1-48cb-8e67-da9d105ae381"
+      },
+      "analytics_identifier": "D2",
+      "parent_organisations": [
+
+      ],
+      "child_organisations": [
+        {
+          "id": "https://www.gov.uk/api/organisations/the-committee-on-standards-in-public-life",
+          "web_url": "https://www.gov.uk/government/organisations/the-committee-on-standards-in-public-life"
+        },
+        {
+          "id": "https://www.gov.uk/api/organisations/the-office-of-the-leader-of-the-house-of-commons",
+          "web_url": "https://www.gov.uk/government/organisations/the-office-of-the-leader-of-the-house-of-commons"
+        },
+      ],
+      "superseded_organisations": [
+
+      ],
+      "superseding_organisations": [
+
+      ]
+    }
+  end
+
+
   def ministerial_departments_hash
     {
       "title": "Departments, agencies and public bodies",
