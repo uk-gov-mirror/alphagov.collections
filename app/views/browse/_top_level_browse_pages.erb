@@ -4,15 +4,15 @@
     <% top_level_browse_pages.each_with_index do |page, index| %>
       <li class="<%= browsing_in_top_level_page?(page) ? 'active' : '' %>">
         <%= link_to(
-          page.title,
-          page.base_path,
+          page["title"],
+          "browse#{page["base_path"]}",
           data: {
             track_category: 'firstLevelBrowseLinkClicked',
             track_action: "#{index + 1}",
-            track_label: page.base_path,
+            track_label: "#{page["base_path"]}",
             track_options: {
               dimension28: top_level_browse_pages.count.to_s,
-              dimension29: page.title,
+              dimension29: page["title"],
             },
           },
         ) %>

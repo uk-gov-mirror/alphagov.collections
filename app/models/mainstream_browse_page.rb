@@ -21,7 +21,9 @@ class MainstreamBrowsePage
   end
 
   def top_level_browse_pages
-    linked_items("top_level_browse_pages")
+    level_one_taxons = Services.content_store.content_item('/').dig('links', 'level_one_taxons') || []
+
+    level_one_taxons
   end
 
   def active_top_level_browse_page
