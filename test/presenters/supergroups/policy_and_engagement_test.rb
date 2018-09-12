@@ -98,7 +98,7 @@ describe Supergroups::PolicyAndEngagement do
             Document.new(
               title: 'Tagged Content Title',
               description: 'Description of tagged content',
-              public_updated_at: '2018-02-28T08:01:00.000+00:00',
+              public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
               base_path: '/government/tagged/content-1',
               content_store_document_type: 'open_consultation',
               organisations: 'Tagged Content Organisation'
@@ -133,7 +133,7 @@ describe Supergroups::PolicyAndEngagement do
                 }
               },
               metadata: {
-                public_updated_at: '2018-02-28T08:01:00.000+00:00',
+                public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
                 organisations: 'Tagged Content Organisation',
                 document_type: 'Open consultation',
                 closing_date: 'Closing date 10 July 2018'
@@ -217,7 +217,7 @@ private
         }
       },
       metadata: {
-        public_updated_at: '2018-02-28T08:01:00.000+00:00',
+        public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
         organisations: 'Tagged Content Organisation',
         document_type: document_type.humanize,
       }

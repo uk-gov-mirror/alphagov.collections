@@ -252,7 +252,7 @@ module RummagerHelpers
         Document.new(
           title: 'Tagged Content Title',
           description: 'Description of tagged content',
-          public_updated_at: '2018-02-28T08:01:00.000+00:00',
+          public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
           base_path: '/government/tagged/content',
           content_store_document_type: doc_type,
           organisations: 'Tagged Content Organisation'

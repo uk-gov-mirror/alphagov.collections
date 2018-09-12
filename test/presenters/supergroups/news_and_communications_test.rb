@@ -4,7 +4,7 @@ describe Supergroups::NewsAndCommunications do
   include RummagerHelpers
   include SupergroupHelpers
 
-  DEFAULT_WHITEHALL_IMAGE_URL = "https://assets.publishing.service.gov.uk/government/assets/placeholder.jpg".freeze
+  DEFAULT_WHITEHALL_IMAGE_URL = "http://static.test.gov.uk/government/assets/placeholder.jpg".freeze
   let(:taxon_id) { '12345' }
   let(:news_and_communications_supergroup) { Supergroups::NewsAndCommunications.new }
 
@@ -29,7 +29,7 @@ describe Supergroups::NewsAndCommunications do
             }
           },
           metadata: {
-            public_updated_at: '2018-02-28T08:01:00.000+00:00',
+            public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
             organisations: 'Tagged Content Organisation',
             document_type: 'News story'
           }
@@ -77,7 +77,7 @@ describe Supergroups::NewsAndCommunications do
             text: 'Tagged Content Title',
             path: '/government/tagged/content',
             data_attributes: {
-              track_category: "newsAndCommunicationsFeaturedLinkClicked",
+              track_category: "newsAndCommunicationsImageCardClicked",
               track_action: 1,
               track_label: '/government/tagged/content',
               track_options: {
@@ -86,13 +86,12 @@ describe Supergroups::NewsAndCommunications do
             }
           },
           metadata: {
-            public_updated_at: '2018-02-28T08:01:00.000+00:00',
+            public_updated_at: Time.parse('2018-02-28T08:01:00.000+00:00'),
             organisations: 'Tagged Content Organisation',
             document_type: 'News story'
           },
           image: {
-            url: 'an/image/path',
-            alt: 'some alt text'
+            url: 'an/image/path'
           }
         }
       ]
@@ -125,23 +124,6 @@ describe Supergroups::NewsAndCommunications do
       .returns(section_tagged_content_list('news_story'))
 
       assert_equal DEFAULT_WHITEHALL_IMAGE_URL, news_and_communications_supergroup.promoted_content(taxon_id).first[:image][:url]
-    end
-
-    it 'uses empty alt text if using the default whitehall image' do
-      # The default whitehall image does not give more context/information to the user about the news item they are viewing.
-      # We therefore want to hide the image from screenreaders by setting alt_text to a blank value
-
-      content = content_item_for_base_path('/government/tagged/content').merge(
-        "details": {}
-      )
-
-      content_store_has_item('/government/tagged/content', content)
-
-      MostRecentContent.any_instance
-      .stubs(:fetch)
-      .returns(section_tagged_content_list('news_story'))
-
-      assert_equal "", news_and_communications_supergroup.promoted_content(taxon_id).first[:image][:alt]
     end
   end
 end

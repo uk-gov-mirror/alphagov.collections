@@ -74,7 +74,7 @@
 
   .taxon-page__featured-metadata-wrapper {
     @include core-16;
-    margin-top: $gutter-one-third / 2;
+    margin-top: -$gutter-two-thirds;
 
     .taxon-page__featured-metadata {
       display: inline-block;
