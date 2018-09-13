@@ -4,13 +4,13 @@ class Document
   include ActiveModel::Model
 
   attr_accessor(
-    :title,
-    :description,
     :base_path,
-    :public_updated_at,
     :change_note,
-    :format,
     :content_store_document_type,
-    :organisations
+    :description,
+    :format,
+    :organisations,
+    :public_updated_at,
+    :title,
   )
 end
