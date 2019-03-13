@@ -13,10 +13,7 @@
               link.title,
               link.link,
               "aria-label": "#{t('campaign.see_more_in_taxon', topic: link.title.downcase)}",
-              data: {
-                "track-category": "sideNavTopics",
-                "track-action": link.title
-              }
+              data: link.sidebar_data_attributes
             ) %>
           </li>
         <% end %>

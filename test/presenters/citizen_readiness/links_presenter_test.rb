@@ -3,14 +3,16 @@ require 'test_helper'
 describe CitizenReadiness::LinksPresenter do
   include TaxonHelpers
 
+  FEATURED_LINKS = [ { "base_path" => "/visit-europe-brexit"} ].freeze
+
   FEATURED_TAXONS = [
-    { "title" => "Going and being abroad", "base_path" => "/going-and-being-abroad", "content_id" => "going-taxon-id" },
     { "title" => "Work", "base_path" => "/work", "content_id" => "work-taxon-id" },
-    { "title" => "Transport", "base_path" => "/transport", "content_id" => "transport-taxon-id" },
     { "title" => "Environment", "base_path" => "/environment", "content_id" => "environment-taxon-id" },
     { "title" => "Business and industry", "base_path" => "/business-and-industry", "content_id" => "business-taxon-id" },
     { "title" => "Education", "base_path" => "/education", "content_id" => "education-taxon-id" }
   ].freeze
+
+  ALL_FEATURED_LINKS = FEATURED_TAXONS + FEATURED_LINKS
 
   REJECTED_TAXONS = [{ "title" => "Government", "base_path" => "/government/all" }].freeze
 
@@ -24,10 +26,10 @@ describe CitizenReadiness::LinksPresenter do
 
       featured_links = presenter.featured_links
 
-      assert_equal(FEATURED_TAXONS.count, featured_links.count)
+      assert_equal(ALL_FEATURED_LINKS.count, featured_links.count)
 
-      featured_links.map do |featured_taxon|
-        assert_includes(FEATURED_TAXONS.map { |taxon| taxon.fetch('base_path') }, featured_taxon.base_path)
+      featured_links.map do |featured_link|
+        assert_includes(ALL_FEATURED_LINKS.map { |link| link.fetch('base_path') }, featured_link.base_path)
       end
     end
   end

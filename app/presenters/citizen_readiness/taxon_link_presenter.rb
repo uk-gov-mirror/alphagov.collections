@@ -1,5 +1,7 @@
 module CitizenReadiness
   class TaxonLinkPresenter
+    include Tracking
+
     attr_reader :taxon_content_item
     delegate(
       :title,
@@ -18,14 +20,6 @@ module CitizenReadiness
 
     def link
       "/prepare-eu-exit#{base_path}"
-    end
-
-    def data_attributes
-      {
-        "track-category": "navGridContentClicked",
-        "track-action": @index,
-        "track-label": title
-      }
     end
   end
 end
