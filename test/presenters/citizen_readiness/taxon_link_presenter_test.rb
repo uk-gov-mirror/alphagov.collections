@@ -1,15 +1,15 @@
 require 'test_helper'
 
-describe BrexitTaxonPresenter do
+describe CitizenReadiness::TaxonLinkPresenter do
   include TaxonHelpers
 
   let(:content_hash) { education_taxon }
   let(:content_item) { ContentItem.new(content_hash) }
   let(:presenter) { described_class.new(content_item) }
 
-  describe '#finder_link' do
-    it 'should return a link for the finder' do
-      assert_equal("/prepare-eu-exit/education", presenter.finder_link)
+  describe '#link' do
+    it 'should return a link' do
+      assert_equal("/prepare-eu-exit/education", presenter.link)
     end
   end
 

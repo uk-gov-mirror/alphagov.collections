@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe BrexitTaxonsPresenter do
+describe CitizenReadiness::LinksPresenter do
   include TaxonHelpers
 
   FEATURED_TAXONS = [
@@ -16,23 +16,23 @@ describe BrexitTaxonsPresenter do
 
   let(:presenter) { described_class.new }
 
-  describe '#featured_taxons' do
+  describe '#featured_links' do
     it 'should return the featured taxons presenters' do
       ContentItem.stubs(:find!)
         .with('/')
         .returns(ContentItem.new("links" => { "level_one_taxons" => FEATURED_TAXONS }))
 
-      featured_taxons = presenter.featured_taxons
+      featured_links = presenter.featured_links
 
-      assert_equal(FEATURED_TAXONS.count, featured_taxons.count)
+      assert_equal(FEATURED_TAXONS.count, featured_links.count)
 
-      featured_taxons.map do |featured_taxon|
+      featured_links.map do |featured_taxon|
         assert_includes(FEATURED_TAXONS.map { |taxon| taxon.fetch('base_path') }, featured_taxon.base_path)
       end
     end
   end
 
-  describe '#other_taxons' do
+  describe '#other_links' do
     it 'should not process featured taxons when featured taxons are included in the content item' do
       ContentItem.stubs(:find!)
         .with('/')
@@ -40,7 +40,7 @@ describe BrexitTaxonsPresenter do
 
       Services.rummager.stubs(:search).never
 
-      presenter.other_taxons
+      presenter.other_links
     end
 
     it 'should not process rejected taxons when rejected taxons are included in the content item' do
@@ -50,7 +50,7 @@ describe BrexitTaxonsPresenter do
 
       Services.rummager.stubs(:search).never
 
-      presenter.other_taxons
+      presenter.other_links
     end
 
     it 'should return empty array when no other level one taxons have content tagged to Brexit' do
@@ -58,9 +58,9 @@ describe BrexitTaxonsPresenter do
         .with('/')
         .returns(ContentItem.new("links" => { "level_one_taxons" => [FEATURED_TAXONS, REJECTED_TAXONS].flatten }))
 
-      other_taxons = presenter.other_taxons
+      other_links = presenter.other_links
 
-      assert_empty(other_taxons)
+      assert_empty(other_links)
     end
 
     it 'should return other level one taxons tagged to Brexit when these exist' do
@@ -102,9 +102,9 @@ describe BrexitTaxonsPresenter do
         }
       )
 
-      other_taxons = presenter.other_taxons
+      other_links = presenter.other_links
 
-      assert_equal(OTHER_TAXONS.map { |taxon| taxon.fetch('base_path') }, other_taxons.map(&:base_path))
+      assert_equal(OTHER_TAXONS.map { |taxon| taxon.fetch('base_path') }, other_links.map(&:base_path))
     end
   end
 end
