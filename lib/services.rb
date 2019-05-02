@@ -15,7 +15,9 @@ module Services
   end
 
   def self.cached_search(params, metric_key: "search.request_time")
-    Rails.cache.fetch(params, expires_in: 5.minutes) do
+    cache_time = rand(150...450)
+
+    Rails.cache.fetch(params, expires_in: cache_time.seconds) do
       GovukStatsd.time(metric_key) do
         self.rummager.search(params).to_h
       end
