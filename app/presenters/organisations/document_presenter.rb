@@ -54,7 +54,7 @@ module Organisations
 
     def public_updated_at
       timestamp = @raw_document["public_timestamp"]
-      timestamp ? Date.parse(timestamp) : nil
+      timestamp ? DateTime.parse(timestamp).in_time_zone.to_date : nil
     end
   end
 end
