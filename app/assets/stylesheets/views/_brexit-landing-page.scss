@@ -44,19 +44,39 @@ $share-grey: #e8eaec;
   font-style: normal;
 }
 
-.landing-page__section-title {
-  padding-top: govuk-spacing(3);
-}
+.landing-page__title-wrapper {
+  display: block;
+  margin-bottom: govuk-spacing(4);
+  background-color: $pink;
+  padding: govuk-spacing(2);
+  background-image: asset-url('chevron.svg');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-origin: content-box;
+  text-decoration: none;
 
-.landing-page__section--border,
-.landing-page__section--mobile-border {
-  border-top: 1px solid govuk-colour('mid-grey', $legacy: 'grey-2');
-}
-
-.landing-page__section--mobile-border {
-  @include govuk-media-query($from: desktop) {
-    border-top: none;
+  &:hover {
+    background-color: $blue;
   }
+}
+
+.landing-page__title {
+  width: 80%;
+  padding: govuk-spacing(3);
+  color: govuk-colour('white');
+  text-decoration: underline;
+}
+
+.landing-page__title-wrapper:focus .landing-page__title {
+  color: govuk-colour('black');
+}
+
+.landing-page__title-wrapper:link,
+.landing-page__title-wrapper:visited,
+.landing-page__title-wrapper:hover,
+.landing-page__title-wrapper:hover:focus .landing-page__title {
+  color: govuk-colour('white');
 }
 
 .landing-page__section-desc {

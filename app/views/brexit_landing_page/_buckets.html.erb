@@ -3,23 +3,16 @@
   data-ecommerce-start-index="1"
   data-list-title="Brexit landing page: <%= t('taxons.brexit.' + bucket["id"]) %>"
   data-search-query>
-  <h2 class="
-        govuk-heading-m
-        landing-page__section-title
-        <%= "landing-page__section--border" if bucket["display_border"] %>
-        <%= "landing-page__section--mobile-border" if bucket["display_mobile_border"] %> "
-  >
-    <% if bucket["link_path"] %>
-      <%= link_to(t('taxons.brexit.' + bucket["id"]), bucket["link_path"], data: {
-        module: "track-click",
-        "track-category": "navGridContentClicked",
-        "track-action": bucket["index"],
-        "track-label": bucket["link_path"]
-      }) %>
-    <% else %>
-      <%= t('taxons.brexit.' + bucket["id"]) %>
-    <% end %>
-  </h2>
+
+  <% if bucket["link_path"] %>
+    <a href="<%= bucket["link_path"] %>" class="landing-page__title-wrapper" data-module="track-click" track-category="navGridContentClicked" track-action="<%= bucket["index"] %>" track-label="<%= bucket["link_path"] %>" >
+  <% end %>
+
+    <h2 class="govuk-heading-m landing-page__title"><%= t('taxons.brexit.' + bucket["id"]) %></h2>
+
+  <% if bucket["link_path"] %>
+    </a>
+  <% end %>
 
   <% if bucket["description"] %>
     <p class="govuk-body landing-page__section-desc"><%= bucket["description"] %></p>
