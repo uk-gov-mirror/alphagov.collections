@@ -1,3 +1,6 @@
+$pink: #E42546;
+$blue: #25336B;
+
 .large-paragraph {
   @include govuk-font($size: 19, $weight: bold);
   margin: govuk-spacing(6) 0 govuk-spacing(1);
@@ -17,6 +20,14 @@ $share-grey: #e8eaec;
 .landing-page__ready {
   padding: govuk-spacing(8) 0;
   background-color: $ready-grey;
+
+  .gem-c-button {
+    background-color: $pink;
+  }
+
+  .gem-c-button:hover {
+    background-color: $blue;
+  }
 }
 
 .landing-page__share {
