@@ -12,6 +12,28 @@ $blue: #25336B;
 
 .landing-page__header {
   padding-bottom: govuk-spacing(6);
+  background: asset-url("brexit-header.gif") no-repeat 50% 50% / auto 100%;
+
+  .gem-c-breadcrumbs {
+    margin-top: 0;
+    padding-top: govuk-spacing(3);
+  }
+}
+
+.landing-page__header-inner {
+  padding: govuk-spacing(9) 0 govuk-spacing(7) 0;
+
+  @include govuk-media-query($from: tablet) {
+    padding: 0;
+  }
+}
+
+.landing-page__lead-paragraph-wrapper {
+  max-width: 80%;
+
+  @include govuk-media-query($from: tablet) {
+    max-width: none;
+  }
 }
 
 $ready-grey: #f1f2f3;
