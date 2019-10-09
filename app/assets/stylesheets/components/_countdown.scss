@@ -1,0 +1,50 @@
+.app-c-countdown {
+  margin-bottom: govuk-spacing(4);
+  text-align: center;
+}
+
+.app-c-countdown__wrapper {
+  display: inline-block;
+  background: govuk-colour("white");
+}
+
+.app-c-countdown__title {
+  @include govuk-font($size: 24, $weight: bold);
+  position: relative;
+  padding: .4em;
+  background: govuk-colour("red");
+  color: govuk-colour("white");
+  text-transform: uppercase;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 15%;
+    height: 16px;
+    width: 10px;
+    margin-left: -5px;
+    background: govuk-colour("blue");
+    box-shadow: 0 0 0 2px govuk-colour("light-grey", $legacy: "grey-4");
+  }
+
+  &:after {
+    left: 85%;
+  }
+}
+
+.app-c-countdown__content {
+  @include govuk-font($size: 24);
+  padding: 0 1em 0.2em 1em;
+  border: solid 2px govuk-colour("blue");
+  border-top: 0;
+  color: govuk-colour("blue");
+}
+
+.app-c-countdown__number {
+  @include govuk-font($size: 80, $weight: bold);
+  display: block;
+  margin-bottom: -10px;
+  padding-top: 5px;
+}

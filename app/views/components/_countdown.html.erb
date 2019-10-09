@@ -1,0 +1,18 @@
+<%
+  date ||= false
+  date_name ||= false
+
+  countdown_helper = CountdownClock.new(date) if date
+%>
+<% if local_assigns[:date] && countdown_helper.show_countdown? %>
+  <aside class="app-c-countdown">
+    <div class="app-c-countdown__wrapper">
+      <div class="app-c-countdown__title">
+        <%= date_name if date_name %>
+      </div>
+      <div class="app-c-countdown__content">
+        <span class="app-c-countdown__number"><%= countdown_helper.days_left %></span> <%= countdown_helper.days_text %> to go
+      </div>
+    </div>
+  </aside>
+<% end %>
