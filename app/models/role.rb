@@ -26,6 +26,14 @@ class Role
     details["body"]
   end
 
+  def organisations
+    links["ordered_parent_organisations"]
+  end
+
+  def has_organisations?
+    organisations.present?
+  end
+
 private
 
   def links
