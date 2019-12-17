@@ -1,5 +1,5 @@
 <% if announcements.items.present? %>
-  <section id="announcements" dir="<%= page_text_direction %>" lang="<%= locale %>">
+  <section id="announcements" <%= @dir_att %> lang="<%= locale %>">
     <%= render "govuk_publishing_components/components/heading", {
         text: "Announcements",
         id: "announcements",

@@ -6,7 +6,7 @@
     } %>
   </div>
 
-  <div class="govuk-grid-column-one-third" dir="<%= page_text_direction %>" lang="<%= person.locale %>">
+  <div class="govuk-grid-column-one-third" <%= @dir_att %> <%= @lang_att %>>
     <%= render "govuk_publishing_components/components/translation-nav", {
       translations: person.translations
     } %>
