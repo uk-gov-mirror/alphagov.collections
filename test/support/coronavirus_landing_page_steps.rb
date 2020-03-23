@@ -25,7 +25,7 @@ module CoronavirusLandingPageSteps
   end
 
   def and_i_click_on_an_accordian
-    first(".govuk-accordion__section").find(".govuk-accordion__section-button").click
+    first(".govuk-accordion__section-button").click
   end
 
   def then_i_can_see_the_accordians_content
