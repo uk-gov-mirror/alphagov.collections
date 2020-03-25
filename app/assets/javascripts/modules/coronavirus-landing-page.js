@@ -7,7 +7,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
   Modules.CoronavirusLandingPage = function () {
     this.start = function () {
       // Confirm the user is on the coronavirus landing page
-      if (this.checkOnLandingPage()) {
+      if (window.location.pathname === "/coronavirus") {
         if (GOVUK.cookie("global_bar_seen")) {
           // Get current version of global bar, if cookie has been set
           var currentBannerVersion = JSON.parse(GOVUK.cookie("global_bar_seen")).version
@@ -17,9 +17,5 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
         }
       }
     }
-  },
-
-  this.checkOnLandingPage = function () {
-    return window.location.pathname === "/coronavirus"
   }
 })(window.GOVUK.Modules)
