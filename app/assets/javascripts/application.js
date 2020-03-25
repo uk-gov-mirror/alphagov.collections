@@ -7,4 +7,5 @@
 //= require modules/feeds.js
 //= require modules/toggle-attribute
 //= require components/accordion
+//= require modules/coronavirus_landing_page
 //= require govuk_publishing_components/all_components
