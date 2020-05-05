@@ -848,6 +848,8 @@ class OrganisationTest < ActionDispatch::IntegrationTest
   it "separate website pages have GovernmentOrganization schema.org information" do
     visit "/government/organisations/student-loans-company"
 
+    puts page.html
+
     schema_sections = page.find_all("script[type='application/ld+json']", visible: false)
     schemas = schema_sections.map { |section| JSON.parse(section.text(:all)) }
 
