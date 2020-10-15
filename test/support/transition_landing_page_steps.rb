@@ -34,6 +34,7 @@ module TransitionLandingPageSteps
   end
 
   def then_i_can_see_the_buckets_section
+    puts page.html
     assert page.has_selector?("h2.govuk-heading-l", text: "Make sure you’re ready")
   end
 
@@ -73,6 +74,7 @@ module TransitionLandingPageSteps
       "Policy papers and consultations",
       "Transparency and freedom of information releases",
     ].each do |section|
+      puts section
       assert page.has_css?("a[data-track-category='SeeAllLinkClicked']", text: section)
       assert page.has_css?("a[data-track-action=\"#{TRANSITION_TAXON_PATH}\"]", text: section)
     end
