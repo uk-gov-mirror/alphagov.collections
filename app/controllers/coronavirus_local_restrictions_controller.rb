@@ -7,16 +7,17 @@ class CoronavirusLocalRestrictionsController < ApplicationController
              breadcrumbs: breadcrumbs,
              error_message: nil,
              input_error: nil,
+             input_value: nil,
              error_description: nil,
            }
   end
 
   def results
-    if params["postcode-lookup"].blank?
+    if params[:postcode].blank?
       return render_no_postcode_error
     end
 
-    @postcode = PostcodeService.new(params["postcode-lookup"]).sanitize
+    @postcode = PostcodeService.new(params[:postcode]).sanitize
 
     if @postcode.blank?
       return render_no_postcode_error

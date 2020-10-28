@@ -44,7 +44,7 @@
 
     <%= sanitize(t("coronavirus_local_restrictions.lookup.body_content")) %>
 
-    <%= form_for :postcode_lookup, :url => find_coronavirus_local_restrictions_path, :html => {:class => "coronavirus-local-restrictions__postcode-form"} do |f| %>
+    <%= form_tag find_coronavirus_local_restrictions_results_path, method: :get, :postcode => input_value, :html => {:class => "coronavirus-local-restrictions__postcode-form"} do |f| %>
       <%= render "shared/postcode-lookup", {
         input_error: input_error
       } %>
