@@ -13,8 +13,6 @@ class CoronavirusLocalRestrictionsController < ApplicationController
   end
 
   def results
-    @content_item = content_item.to_hash
-
     if params["postcode-lookup"].blank?
       return render_no_postcode_error("postcodeLeftBlank")
     end
