@@ -32,14 +32,6 @@
     <% end %>
     <%= yield %>
     </main>
-
-    <% if content_for(:is_full_width_header) %>
-      <div class="govuk-width-container">
-        <%= render 'govuk_publishing_components/components/feedback' %>
-      </div>
-    <% else %>
-      <%= render 'govuk_publishing_components/components/feedback' %>
-    <% end %>
   </div>
 </body>
 </html>
