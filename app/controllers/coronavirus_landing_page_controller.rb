@@ -4,6 +4,9 @@ class CoronavirusLandingPageController < ApplicationController
   skip_before_action :set_expiry
   before_action -> { set_expiry(5.minutes) }
 
+  slimmer_template :gem_layout_full_width
+
+
   def show
     @content_item = content_item.to_hash
     breadcrumbs = [{ title: "Home", url: "/", is_page_parent: true }]
