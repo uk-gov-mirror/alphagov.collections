@@ -41,7 +41,7 @@ class ContentStoreOrganisationsTest < ActionDispatch::IntegrationTest
 
   it "renders an accessible version of organisation count" do
     assert page.has_css?('.organisations__department-count-wrapper span[aria-hidden="true"]')
-    assert page.has_css?(".organisations__department-count-wrapper p.visuallyhidden", text: "There are 2 Non ministerial departments")
+    assert page.has_css?(".organisations__department-count-wrapper p.govuk-visually-hidden", text: "There are 2 Non ministerial departments")
   end
 
   it "renders ministerial organisation with crest" do
