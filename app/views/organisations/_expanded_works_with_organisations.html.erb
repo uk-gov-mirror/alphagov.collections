@@ -5,16 +5,14 @@
 <div class="organisation-list__works-with js-hidden" id="toggle_<%= current_organisation.parameterize %>">
   <% works_with_organisations.each do |type, work_with_organisations| %>
     <%= render "govuk_publishing_components/components/heading", {
-      text: t('organisations.type.' + type),
-      heading_level: 4,
       font_size: "s",
+      heading_level: 4,
+      text: t('organisations.type.' + type),
     } %>
-    <ul class="organisation-list__works-with-list">
-      <% work_with_organisations.each do |work_with_organisation| %>
-        <li class="organisation-list__works-with-list-item">
-          <%= link_to(work_with_organisation["title"], work_with_organisation["href"], class: "govuk-link") %>
-        </li>
-      <% end %>
-    </ul>
+    <%= render "govuk_publishing_components/components/list", {
+      items: work_with_organisations.map { | work_with_organisation |
+        link_to(work_with_organisation["title"], work_with_organisation["href"], class: "govuk-link govuk-body-s")
+      },
+    } %>
   <% end %>
 </div>

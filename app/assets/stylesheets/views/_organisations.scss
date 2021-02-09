@@ -8,10 +8,13 @@
   }
 
   .organisations-list__item {
-    list-style-type: none;
-    padding-bottom: govuk-spacing(3);
+    border-bottom: 1px solid $govuk-border-colour;
     margin-bottom: govuk-spacing(3);
-    border-bottom: 1px solid govuk-colour("mid-grey");
+    padding-bottom: govuk-spacing(3);
+
+    h3 {
+      margin: 0;
+    }
   }
 
   .organisation-list__item-title {
@@ -27,8 +30,7 @@
   .organisation-list__item-works-with {
     @include govuk-font(16);
     display: block;
-    margin-top: govuk-spacing(3);
-    margin-right: govuk-spacing(4);
+    margin: govuk-spacing(3) govuk-spacing(4) 0 0;
 
     @include govuk-media-query($from: tablet) {
       display: inline-block;

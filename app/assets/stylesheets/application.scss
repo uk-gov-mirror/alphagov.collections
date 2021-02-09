@@ -1,4 +1,4 @@
-$govuk-compatibility-govuktemplate: true;
+$govuk-compatibility-govuktemplate: false;
 $govuk-use-legacy-palette: false;
 $covid-grey: #272828;
 $covid-yellow: #fff500;
@@ -61,3 +61,8 @@ $covid-yellow: #fff500;
 @import "modules/full-page-width";
 
 @import "shared/postcode-lookup";
+
+.js-enabled .js-hidden {
+  display: none;
+  visibility: hidden;
+}
